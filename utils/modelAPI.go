@@ -1,9 +1,9 @@
 package utils
 
 import (
+	clans "calibotapi/clans"
 	"encoding/json"
 	"fmt"
-	clans "main/clans"
 	"os"
 )
 
