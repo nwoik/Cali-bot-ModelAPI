@@ -1,3 +1,3 @@
-module main
+module calibotapi
 
 go 1.20
