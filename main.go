@@ -1,7 +1,7 @@
 package main
 
 import (
-	"calibotapi/utils"
+	"github.com/nwoik/calibotapi/utils"
 )
 
 func main() {

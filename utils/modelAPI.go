@@ -1,10 +1,11 @@
 package utils
 
 import (
-	clans "calibotapi/clans"
 	"encoding/json"
 	"fmt"
 	"os"
+
+	clans "github.com/nwoik/calibotapi/clans"
 )
 
 func AddClan(clans *clans.Clans, name string, clanid string, guildid string) *clans.Clan {
