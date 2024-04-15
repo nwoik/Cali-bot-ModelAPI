@@ -1,10 +1,12 @@
 package clans
 
 type Clan struct {
-	Name    string    `json:"name"`
-	GuildID string    `json:"guildid"`
-	ClanID  string    `json:"clanid"`
-	Members []*Member `json:"members"`
+	Name       string    `json:"name"`
+	GuildID    string    `json:"guildid"`
+	MemberRole string    `json:"memberrole"`
+	LeaderID   string    `json:"leaderid"`
+	ClanID     string    `json:"clanid"`
+	Members    []*Member `json:"members"`
 }
 
 func NewClan() *Clan {
@@ -17,6 +19,14 @@ func (clan *Clan) GetName() string {
 
 func (clan *Clan) GetGuildID() string {
 	return clan.GuildID
+}
+
+func (clan *Clan) GetMemberRole() string {
+	return clan.MemberRole
+}
+
+func (clan *Clan) GetLeaderID() string {
+	return clan.LeaderID
 }
 
 func (clan *Clan) GetClanID() string {
@@ -41,6 +51,16 @@ func (clan *Clan) SetName(name string) *Clan {
 
 func (clan *Clan) SetGuildID(id string) *Clan {
 	clan.GuildID = id
+	return clan
+}
+
+func (clan *Clan) SetMemberRole(role string) *Clan {
+	clan.MemberRole = role
+	return clan
+}
+
+func (clan *Clan) SetLeaderID(id string) *Clan {
+	clan.LeaderID = id
 	return clan
 }
 
