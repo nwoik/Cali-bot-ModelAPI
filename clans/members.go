@@ -6,39 +6,31 @@ import (
 	"os"
 )
 
-type Clans struct {
-	ClansList []*Clan `json:"clansList"`
+type Members struct {
+	MembersList []*Member `json:"members"`
 }
 
-func NewClans() *Clans {
-	return &Clans{}
+func NewMembers() *Members {
+	return &Members{}
 }
 
-func (clans *Clans) AddClan(clan Clan) *Clan {
-	clans.ClansList = clans.GetClans()
-	clans.ClansList = append(clans.ClansList, &clan)
+func (members *Members) GetMembers() []*Member {
+	membersList := members.MembersList
 
-	return &clan
-}
-
-func (clans *Clans) GetClans() []*Clan {
-	theClans := clans.ClansList
-
-	if theClans == nil {
-		clans.SetClans(make([]*Clan, 0))
-		theClans = clans.ClansList
+	if membersList == nil {
+		members.SetMembers(make([]*Member, 0))
+		membersList = members.MembersList
 	}
 
-	return theClans
+	return membersList
 }
 
-func (clans *Clans) SetClans(clansList []*Clan) *Clans {
-	clans.ClansList = clansList
-	return clans
+func (members *Members) SetMembers(membersList []*Member) *Members {
+	members.MembersList = membersList
+	return members
 }
 
-func (clans *Clans) Open(filePath string) *Clans {
-	// Read JSON file
+func (members *Members) Open(filePath string) *Members {
 	jsonData, err := os.ReadFile(filePath)
 	if err != nil {
 		fmt.Println("Error reading JSON file:", err)
@@ -46,16 +38,16 @@ func (clans *Clans) Open(filePath string) *Clans {
 	}
 
 	// Parse JSON data
-	err = json.Unmarshal(jsonData, &clans)
+	err = json.Unmarshal(jsonData, &members)
 	if err != nil {
 		fmt.Println("Error parsing JSON data:", err)
 		return nil
 	}
 
-	return clans
+	return members
 }
 
-func (clans *Clans) Close(filePath string) {
+func (members *Members) Close(filePath string) {
 
 	// Open the JSON file for reading
 	file, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE, 0644)
@@ -80,7 +72,7 @@ func (clans *Clans) Close(filePath string) {
 	}
 
 	// // Encode and write updated JSON data back to the file
-	err = json.NewEncoder(file).Encode(&clans)
+	err = json.NewEncoder(file).Encode(&members)
 	if err != nil {
 		fmt.Println("Error encoding JSON data:", err)
 		return
