@@ -9,12 +9,12 @@ func AddClan(clans *clans.Clans, name string, clanid string, guildid string) *cl
 	return clans.AddClan(clan)
 }
 
-func AddMember(members []clans.Member, nick string, ign string, igid string, userid string) *clans.Member {
+func AddMember(members []*clans.Member, nick string, ign string, igid string, userid string) []*clans.Member {
 	member := CreateMember(nick, ign, igid, userid)
 
-	members = append(members, member)
+	members = append(members, &member)
 
-	return &member
+	return members
 }
 
 func CreateClan(name string, clanid string, guildid string) clans.Clan {
