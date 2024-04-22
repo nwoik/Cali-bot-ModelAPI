@@ -68,6 +68,7 @@ func (clans *Clans) Close(filePath string) {
 	}
 
 	encodedData, err := json.MarshalIndent(clans, "", "    ")
+
 	if err != nil {
 		fmt.Println("Error encoding JSON data:", err)
 		return
