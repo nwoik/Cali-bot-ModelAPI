@@ -2,16 +2,39 @@
     "clansList": [
         {
             "name": "Cali Cartel",
-            "clanid":"",
             "guildid": "1225139432521465987",
             "memberrole": "",
             "leaderid": "",
+            "clanid": "",
+            "members": []
+        },
+        {
+            "name": "My Clan",
+            "guildid": "123131",
+            "memberrole": "",
+            "leaderid": "",
+            "clanid": "129712342",
             "members": [
                 {
-                    "userid": "593475382498426927",
-                    "nick": "davidnwky",
-                    "ign": "nwoik",
-                    "igid": "314799766"
+                    "userid": "123131414",
+                    "nick": "12345",
+                    "ign": "nikka",
+                    "igid": "deez"
+                }
+            ]
+        },
+        {
+            "name": "My Clan",
+            "guildid": "123131",
+            "memberrole": "",
+            "leaderid": "",
+            "clanid": "129712342",
+            "members": [
+                {
+                    "userid": "123131414",
+                    "nick": "12345",
+                    "ign": "nikka",
+                    "igid": "deez"
                 }
             ]
         }
