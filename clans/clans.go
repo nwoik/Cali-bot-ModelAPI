@@ -67,10 +67,15 @@ func (clans *Clans) Close(filePath string) {
 		return
 	}
 
-	// // Encode and write updated JSON data back to the file
-	err = json.NewEncoder(file).Encode(&clans)
+	encodedData, err := json.MarshalIndent(clans, "", "    ")
 	if err != nil {
 		fmt.Println("Error encoding JSON data:", err)
+		return
+	}
+
+	// Write the encoded JSON data to the file
+	if _, err := file.Write(encodedData); err != nil {
+		fmt.Println("Error writing JSON data to file:", err)
 		return
 	}
 

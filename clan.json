@@ -37,6 +37,21 @@
                     "igid": "deez"
                 }
             ]
+        },
+        {
+            "name": "My Clan",
+            "guildid": "123131",
+            "memberrole": "",
+            "leaderid": "",
+            "clanid": "129712342",
+            "members": [
+                {
+                    "userid": "123131414",
+                    "nick": "12345",
+                    "ign": "nikka",
+                    "igid": "deez"
+                }
+            ]
         }
     ]
 }
