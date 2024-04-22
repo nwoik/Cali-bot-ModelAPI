@@ -11,6 +11,7 @@ func main() {
 
 	clan := utils.CreateClan("My Clan", "129712342", "123131")
 	clan.AddMember(utils.CreateMember("12345", "nikka", "deez", "123131414"))
+	clan.BlacklistMember(utils.CreateMember("12345", "nikka", "deez", "123131414"))
 
 	clans.AddClan(clan)
 	members = append(members, utils.CreateMember("12345", "nikka", "deez", "123131414"))

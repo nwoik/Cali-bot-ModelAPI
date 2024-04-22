@@ -1,1 +1,26 @@
-[{"userid":"123131414","nick":"12345","ign":"nikka","igid":"deez"},{"userid":"123131414","nick":"12345","ign":"nikka","igid":"deez"},{"userid":"123131414","nick":"12345","ign":"nikka","igid":"deez"}]
+[
+    {
+        "userid": "123131414",
+        "nick": "12345",
+        "ign": "nikka",
+        "igid": "deez"
+    },
+    {
+        "userid": "123131414",
+        "nick": "12345",
+        "ign": "nikka",
+        "igid": "deez"
+    },
+    {
+        "userid": "123131414",
+        "nick": "12345",
+        "ign": "nikka",
+        "igid": "deez"
+    },
+    {
+        "userid": "123131414",
+        "nick": "12345",
+        "ign": "nikka",
+        "igid": "deez"
+    }
+]

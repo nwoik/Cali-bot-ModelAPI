@@ -7,6 +7,7 @@ type Clan struct {
 	LeaderID   string    `json:"leaderid"`
 	ClanID     string    `json:"clanid"`
 	Members    []*Member `json:"members"`
+	Blacklist  []*Member `json:"blacklist"`
 }
 
 func NewClan() *Clan {
@@ -45,6 +46,12 @@ func (clan *Clan) SetMembers(members []*Member) *Clan {
 
 func (clan *Clan) AddMember(member *Member) *Member {
 	clan.Members = append(clan.Members, member)
+
+	return member
+}
+
+func (clan *Clan) BlacklistMember(member *Member) *Member {
+	clan.Blacklist = append(clan.Blacklist, member)
 
 	return member
 }
