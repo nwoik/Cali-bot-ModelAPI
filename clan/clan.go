@@ -4,18 +4,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-
-	m "github.com/nwoik/calibotapi/member"
 )
 
 type Clan struct {
-	Name      string      `json:"name"`
-	GuildID   string      `json:"guildid"`
-	Roles     []string    `json:"Roles"`
-	LeaderID  string      `json:"leaderid"`
-	ClanID    string      `json:"clanid"`
-	Members   []*m.Member `json:"members"`
-	Blacklist []*m.Member `json:"blacklist"`
+	Name      string   `json:"name"`
+	GuildID   string   `json:"guildid"`
+	Roles     []string `json:"Roles"`
+	LeaderID  string   `json:"leaderid"`
+	ClanID    string   `json:"clanid"`
+	Blacklist []string `json:"blacklist"`
 }
 
 func NewClan() *Clan {
@@ -56,27 +53,16 @@ func (clan *Clan) SetClanID(id string) *Clan {
 	return clan
 }
 
-func (clan *Clan) SetMembers(members []*m.Member) *Clan {
-	clan.Members = members
-	return clan
-}
-
 func (clan *Clan) AddRole(role string) string {
 	clan.Roles = append(clan.Roles, role)
 
 	return role
 }
 
-func (clan *Clan) AddMember(member *m.Member) *m.Member {
-	clan.Members = append(clan.Members, member)
+func (clan *Clan) BlacklistMember(userid string) string {
+	clan.Blacklist = append(clan.Blacklist, userid)
 
-	return member
-}
-
-func (clan *Clan) BlacklistMember(member *m.Member) *m.Member {
-	clan.Blacklist = append(clan.Blacklist, member)
-
-	return member
+	return userid
 }
 
 func Open(filePath string) []*Clan {

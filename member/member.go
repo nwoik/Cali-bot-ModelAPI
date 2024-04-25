@@ -11,6 +11,7 @@ type Member struct {
 	Nick   string `json:"nick"`
 	IGN    string `json:"ign"`
 	IGID   string `json:"igid"`
+	ClanID string `json:"clan"`
 }
 
 func NewMember() *Member {
@@ -44,6 +45,11 @@ func (member *Member) SetIGN(ign string) *Member {
 
 func (member *Member) SetIGID(igid string) *Member {
 	member.IGID = igid
+	return member
+}
+
+func (member *Member) SetClanID(clanid string) *Member {
+	member.ClanID = clanid
 	return member
 }
 
