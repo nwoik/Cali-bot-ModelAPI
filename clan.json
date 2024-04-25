@@ -2,7 +2,7 @@
     {
         "name": "My Clan",
         "guildid": "123131",
-        "Roles": null,
+        "Roles": [],
         "leaderid": "",
         "clanid": "129712342",
         "members": [

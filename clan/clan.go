@@ -61,6 +61,12 @@ func (clan *Clan) SetMembers(members []*m.Member) *Clan {
 	return clan
 }
 
+func (clan *Clan) AddRole(role string) string {
+	clan.Roles = append(clan.Roles, &role)
+
+	return role
+}
+
 func (clan *Clan) AddMember(member *m.Member) *m.Member {
 	clan.Members = append(clan.Members, member)
 
