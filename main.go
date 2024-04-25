@@ -1,21 +1,21 @@
 package main
 
 import (
-	c "github.com/nwoik/calibotapi/clans"
-	"github.com/nwoik/calibotapi/utils"
+	c "github.com/nwoik/calibotapi/clan"
+	m "github.com/nwoik/calibotapi/member"
 )
 
 func main() {
-	clans := c.NewClans().Open("./clan.json")
-	members := utils.Open("members.json")
+	clans := c.Open("./clan.json")
+	members := m.Open("members.json")
 
-	clan := utils.CreateClan("My Clan", "129712342", "123131")
-	clan.AddMember(utils.CreateMember("12345", "nikka", "deez", "123131414"))
-	clan.BlacklistMember(utils.CreateMember("12345", "nikka", "deez", "123131414"))
+	clan := c.CreateClan("My Clan", "129712342", "123131")
+	clan.AddMember(m.CreateMember("12345", "nikka", "deez", "123131414"))
+	clan.BlacklistMember(m.CreateMember("12345", "nikka", "deez", "123131414"))
 
-	clans.AddClan(clan)
-	members = append(members, utils.CreateMember("12345", "nikka", "deez", "123131414"))
+	clans = append(clans, clan)
+	members = append(members, m.CreateMember("12345", "nikka", "deez", "123131414"))
 
-	clans.Close("./clan.json")
-	utils.Close("./members.json", members)
+	c.Close("./clan.json", clans)
+	m.Close("./members.json", members)
 }

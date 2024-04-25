@@ -1,24 +1,24 @@
-package utils
+package clans
 
 import (
 	"encoding/json"
 	"fmt"
 	"os"
-
-	clans "github.com/nwoik/calibotapi/clans"
 )
 
-func CreateClan(name string, clanid string, guildid string) *clans.Clan {
-	newClan := clans.NewClan().
-		SetName(name).
-		SetClanID(clanid).
-		SetGuildID(guildid)
-
-	return newClan
+type Member struct {
+	UserID string `json:"userid"`
+	Nick   string `json:"nick"`
+	IGN    string `json:"ign"`
+	IGID   string `json:"igid"`
 }
 
-func CreateMember(nick string, ign string, igid string, userid string) *clans.Member {
-	newMember := clans.NewMember().
+func NewMember() *Member {
+	return &Member{}
+}
+
+func CreateMember(nick string, ign string, igid string, userid string) *Member {
+	newMember := NewMember().
 		SetNick(nick).
 		SetIGN(ign).
 		SetIGID(igid).
@@ -27,8 +27,28 @@ func CreateMember(nick string, ign string, igid string, userid string) *clans.Me
 	return newMember
 }
 
-func Open(filePath string) []*clans.Member {
-	var members []*clans.Member
+func (member *Member) SetUserID(id string) *Member {
+	member.UserID = id
+	return member
+}
+
+func (member *Member) SetNick(nick string) *Member {
+	member.Nick = nick
+	return member
+}
+
+func (member *Member) SetIGN(ign string) *Member {
+	member.IGN = ign
+	return member
+}
+
+func (member *Member) SetIGID(igid string) *Member {
+	member.IGID = igid
+	return member
+}
+
+func Open(filePath string) []*Member {
+	var members []*Member
 	jsonData, err := os.ReadFile(filePath)
 	if err != nil {
 		fmt.Println("Error reading JSON file:", err)
@@ -45,7 +65,7 @@ func Open(filePath string) []*clans.Member {
 	return members
 }
 
-func Close(filePath string, members []*clans.Member) {
+func Close(filePath string, members []*Member) {
 
 	// Open the JSON file for reading
 	file, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE, 0644)
