@@ -9,6 +9,7 @@ import (
 type Clan struct {
 	Name        string   `json:"name"`
 	GuildID     string   `json:"guildid"`
+	LeaderRole  string   `json:"leaderrole"`
 	OfficerRole string   `json:"officerrole"`
 	MemberRole  string   `json:"memberrole"`
 	LeaderID    string   `json:"leaderid"`
@@ -46,6 +47,11 @@ func (clan *Clan) SetMemberRole(role string) *Clan {
 
 func (clan *Clan) SetOfficerRole(role string) *Clan {
 	clan.OfficerRole = role
+	return clan
+}
+
+func (clan *Clan) SetLeaderRole(role string) *Clan {
+	clan.LeaderRole = role
 	return clan
 }
 

@@ -2,6 +2,7 @@
     {
         "name": "My Clan",
         "guildid": "123131",
+        "leaderrole": "",
         "officerrole": "",
         "memberrole": "",
         "leaderid": "",
