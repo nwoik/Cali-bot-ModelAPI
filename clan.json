@@ -2,7 +2,8 @@
     {
         "name": "My Clan",
         "guildid": "123131",
-        "Roles": [],
+        "officerrole": "",
+        "memberrole": "",
         "leaderid": "",
         "clanid": "129712342",
         "blacklist": []

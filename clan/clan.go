@@ -7,12 +7,13 @@ import (
 )
 
 type Clan struct {
-	Name      string   `json:"name"`
-	GuildID   string   `json:"guildid"`
-	Roles     []string `json:"Roles"`
-	LeaderID  string   `json:"leaderid"`
-	ClanID    string   `json:"clanid"`
-	Blacklist []string `json:"blacklist"`
+	Name        string   `json:"name"`
+	GuildID     string   `json:"guildid"`
+	OfficerRole string   `json:"officerrole"`
+	MemberRole  string   `json:"memberrole"`
+	LeaderID    string   `json:"leaderid"`
+	ClanID      string   `json:"clanid"`
+	Blacklist   []string `json:"blacklist"`
 }
 
 func NewClan() *Clan {
@@ -38,8 +39,13 @@ func (clan *Clan) SetGuildID(id string) *Clan {
 	return clan
 }
 
-func (clan *Clan) SetRoles(roles []string) *Clan {
-	clan.Roles = roles
+func (clan *Clan) SetMemberRole(role string) *Clan {
+	clan.MemberRole = role
+	return clan
+}
+
+func (clan *Clan) SetOfficerRole(role string) *Clan {
+	clan.OfficerRole = role
 	return clan
 }
 
@@ -51,12 +57,6 @@ func (clan *Clan) SetLeaderID(id string) *Clan {
 func (clan *Clan) SetClanID(id string) *Clan {
 	clan.ClanID = id
 	return clan
-}
-
-func (clan *Clan) AddRole(role string) string {
-	clan.Roles = append(clan.Roles, role)
-
-	return role
 }
 
 func (clan *Clan) BlacklistMember(userid string) string {
