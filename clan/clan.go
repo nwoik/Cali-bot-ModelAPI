@@ -12,6 +12,7 @@ type Clan struct {
 	LeaderRole  string   `json:"leaderrole"`
 	OfficerRole string   `json:"officerrole"`
 	MemberRole  string   `json:"memberrole"`
+	ExtraRoles  []string `json:"extraroles"`
 	LeaderID    string   `json:"leaderid"`
 	ClanID      string   `json:"clanid"`
 	Blacklist   []string `json:"blacklist"`
@@ -63,6 +64,12 @@ func (clan *Clan) SetLeaderID(id string) *Clan {
 func (clan *Clan) SetClanID(id string) *Clan {
 	clan.ClanID = id
 	return clan
+}
+
+func (clan *Clan) AddRole(role string) string {
+	clan.ExtraRoles = append(clan.ExtraRoles, role)
+
+	return role
 }
 
 func (clan *Clan) BlacklistMember(userid string) string {
