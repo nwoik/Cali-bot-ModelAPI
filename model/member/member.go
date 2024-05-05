@@ -1,4 +1,4 @@
-package clans
+package member
 
 import (
 	"encoding/json"
