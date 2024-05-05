@@ -27,9 +27,14 @@ func (clanRepo *ClanRepo) Delete(id string) (int64, error) {
 	return result.DeletedCount, nil
 }
 
-func (clanRepo *ClanRepo) DeleteAll() (int64, error) {
+func (clanRepo *ClanRepo) DeleteAll(predicates ...bson.E) (int64, error) {
+	filter := bson.D{}
+
+	for _, predicate := range predicates {
+		filter = append(filter, predicate)
+	}
 	result, err := clanRepo.MongoCollection.DeleteMany(context.Background(),
-		bson.D{})
+		filter)
 
 	if err != nil {
 		return 0, err
@@ -52,8 +57,13 @@ func (clanRepo *ClanRepo) Get(id string) (*Clan, error) {
 	return &clan, nil
 }
 
-func (clanRepo *ClanRepo) GetAll() ([]Clan, error) {
-	results, err := clanRepo.MongoCollection.Find(context.Background(), bson.D{})
+func (clanRepo *ClanRepo) GetAll(predicates ...bson.E) ([]Clan, error) {
+	filter := bson.D{}
+
+	for _, predicate := range predicates {
+		filter = append(filter, predicate)
+	}
+	results, err := clanRepo.MongoCollection.Find(context.Background(), filter)
 
 	if err != nil {
 		return nil, err
