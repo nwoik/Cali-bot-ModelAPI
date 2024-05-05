@@ -28,7 +28,7 @@ func (clanRepo *ClanRepo) DeleteClan(id string) (int64, error) {
 }
 
 func (clanRepo *ClanRepo) DeleteAll() (int64, error) {
-	result, err := clanRepo.MongoCollection.DeleteOne(context.Background(),
+	result, err := clanRepo.MongoCollection.DeleteMany(context.Background(),
 		bson.D{})
 
 	if err != nil {
