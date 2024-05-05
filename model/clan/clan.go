@@ -1,4 +1,4 @@
-package clans
+package clan
 
 import (
 	"encoding/json"
@@ -7,15 +7,15 @@ import (
 )
 
 type Clan struct {
-	Name        string   `json:"name"`
-	GuildID     string   `json:"guildid"`
-	LeaderRole  string   `json:"leaderrole"`
-	OfficerRole string   `json:"officerrole"`
-	MemberRole  string   `json:"memberrole"`
-	ExtraRoles  []string `json:"extraroles"`
-	LeaderID    string   `json:"leaderid"`
-	ClanID      string   `json:"clanid"`
-	Blacklist   []string `json:"blacklist"`
+	Name        string   `json:"name" bson:"name"`
+	GuildID     string   `json:"guildid" bson:"guildid"`
+	LeaderRole  string   `json:"leaderrole" bson:"leaderrole"`
+	OfficerRole string   `json:"officerrole" bson:"officerrole"`
+	MemberRole  string   `json:"memberrole" bson:"memberrole"`
+	ExtraRoles  []string `json:"extraroles" bson:"extraroles"`
+	LeaderID    string   `json:"leaderid" bson:"leaderid"`
+	ClanID      string   `json:"clanid" bson:"clanid"`
+	Blacklist   []string `json:"blacklist" bson:"blacklist"`
 }
 
 func NewClan() *Clan {

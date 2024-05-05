@@ -7,11 +7,11 @@ import (
 )
 
 type Member struct {
-	UserID string `json:"userid"`
-	Nick   string `json:"nick"`
-	IGN    string `json:"ign"`
-	IGID   string `json:"igid"`
-	ClanID string `json:"clanid"`
+	UserID string `json:"userid" bson:"userid"`
+	Nick   string `json:"nick" bson:"nick"`
+	IGN    string `json:"ign" bson:"ign"`
+	IGID   string `json:"igid" bson:"igid"`
+	ClanID string `json:"clanid" bson:"clanid"`
 }
 
 func NewMember() *Member {
