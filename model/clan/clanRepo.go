@@ -16,7 +16,7 @@ func NewClanRepo(collection *mongo.Collection) *ClanRepo {
 	return &ClanRepo{MongoCollection: collection}
 }
 
-func (clanRepo *ClanRepo) DeleteClan(id string) (int64, error) {
+func (clanRepo *ClanRepo) Delete(id string) (int64, error) {
 	result, err := clanRepo.MongoCollection.DeleteOne(context.Background(),
 		bson.D{{Key: "clanid", Value: id}})
 
@@ -38,7 +38,7 @@ func (clanRepo *ClanRepo) DeleteAll() (int64, error) {
 	return result.DeletedCount, nil
 }
 
-func (clanRepo *ClanRepo) GetClanByID(id string) (*Clan, error) {
+func (clanRepo *ClanRepo) Get(id string) (*Clan, error) {
 	var clan Clan
 
 	err := clanRepo.MongoCollection.FindOne(context.Background(), bson.D{{Key: "clanid", Value: id}}).Decode(&clan)
@@ -52,7 +52,7 @@ func (clanRepo *ClanRepo) GetClanByID(id string) (*Clan, error) {
 	return &clan, nil
 }
 
-func (clanRepo *ClanRepo) GetAllClans() ([]Clan, error) {
+func (clanRepo *ClanRepo) GetAll() ([]Clan, error) {
 	results, err := clanRepo.MongoCollection.Find(context.Background(), bson.D{})
 
 	if err != nil {
@@ -68,7 +68,7 @@ func (clanRepo *ClanRepo) GetAllClans() ([]Clan, error) {
 	return clans, err
 }
 
-func (clanRepo *ClanRepo) InsertClan(clan *Clan) (interface{}, error) {
+func (clanRepo *ClanRepo) Insert(clan *Clan) (interface{}, error) {
 	result, err := clanRepo.MongoCollection.InsertOne(context.Background(), clan)
 	if err != nil {
 		return nil, err
@@ -77,7 +77,7 @@ func (clanRepo *ClanRepo) InsertClan(clan *Clan) (interface{}, error) {
 	return result, nil
 }
 
-func (clanRepo *ClanRepo) UpdateClan(clan *Clan) (int64, error) {
+func (clanRepo *ClanRepo) Update(clan *Clan) (int64, error) {
 	result, err := clanRepo.MongoCollection.UpdateOne(context.Background(),
 		bson.D{{Key: "clanid", Value: clan.ClanID}},
 		bson.D{{Key: "$set", Value: clan}})

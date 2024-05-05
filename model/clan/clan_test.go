@@ -43,7 +43,7 @@ func TestMongoOperations(t *testing.T) {
 
 	t.Run("Insert first clan", func(t *testing.T) {
 		clan := c.CreateClan("my clan", "124312424", "124324253456")
-		result, err := clanRepo.InsertClan(clan)
+		result, err := clanRepo.Insert(clan)
 
 		if err != nil {
 			t.Fatal("Failed insertion", err)
@@ -54,7 +54,7 @@ func TestMongoOperations(t *testing.T) {
 
 	t.Run("Insert second clan", func(t *testing.T) {
 		clan := c.CreateClan("my clan2", "124344344", "234323463456")
-		result, err := clanRepo.InsertClan(clan)
+		result, err := clanRepo.Insert(clan)
 
 		if err != nil {
 			t.Fatal("Failed insertion", err)
@@ -64,7 +64,7 @@ func TestMongoOperations(t *testing.T) {
 	})
 
 	t.Run("Get 2nd clan", func(t *testing.T) {
-		result, err := clanRepo.GetClanByID("124344344")
+		result, err := clanRepo.Get("124344344")
 
 		if err != nil {
 			t.Fatal("Failed to get clan", err)
@@ -74,7 +74,7 @@ func TestMongoOperations(t *testing.T) {
 	})
 
 	t.Run("Get all clans", func(t *testing.T) {
-		results, err := clanRepo.GetAllClans()
+		results, err := clanRepo.GetAll()
 
 		if err != nil {
 			t.Fatal("Failed to get clans", err)
@@ -84,7 +84,7 @@ func TestMongoOperations(t *testing.T) {
 	})
 
 	t.Run("Update 2nd clan", func(t *testing.T) {
-		clan, err := clanRepo.GetClanByID("124344344")
+		clan, err := clanRepo.Get("124344344")
 
 		if err != nil {
 			t.Fatal("Failed to get clan", err)
@@ -92,7 +92,7 @@ func TestMongoOperations(t *testing.T) {
 
 		clan.LeaderID = "deeznuts"
 
-		i, err := clanRepo.UpdateClan(clan)
+		i, err := clanRepo.Update(clan)
 
 		if err != nil {
 			log.Fatal("update failed", err)
@@ -102,7 +102,7 @@ func TestMongoOperations(t *testing.T) {
 	})
 
 	t.Run("Update 1st clan", func(t *testing.T) {
-		clan, err := clanRepo.GetClanByID("124324253456")
+		clan, err := clanRepo.Get("124324253456")
 
 		if err != nil {
 			t.Fatal("Failed to get clan", err)
@@ -110,7 +110,7 @@ func TestMongoOperations(t *testing.T) {
 
 		clan.LeaderID = "nuts"
 
-		i, err := clanRepo.UpdateClan(clan)
+		i, err := clanRepo.Update(clan)
 
 		if err != nil {
 			log.Fatal("update failed", err)
