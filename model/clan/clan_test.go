@@ -3,6 +3,7 @@ package clan_test
 import (
 	"context"
 	"log"
+	"os"
 	"testing"
 
 	c "github.com/nwoik/calibotapi/model/clan"
@@ -13,8 +14,9 @@ import (
 )
 
 func NewMongoClient() *mongo.Client {
-	mongoTestClient, err := mongo.Connect(context.Background(),
-		options.Client().ApplyURI("mongodb://mongo:prcifwVyTGyjhszMBDAaDntdsxSEJJLi@viaduct.proxy.rlwy.net:58839/?tlsCertificateKeyFilePassword=prcifwVyTGyjhszMBDAaDntdsxSEJJLi"))
+	pswd := os.Getenv("MONGO_PASS")
+	mongoClient, err := mongo.Connect(context.Background(),
+		options.Client().ApplyURI("mongodb://mongo:"+pswd+"@viaduct.proxy.rlwy.net:58839/?tlsCertificateKeyFilePassword="+pswd))
 
 	if err != nil {
 		log.Fatal("error connecting to db", err)
@@ -22,12 +24,12 @@ func NewMongoClient() *mongo.Client {
 
 	log.Println("successfully connected")
 
-	err = mongoTestClient.Ping(context.Background(), readpref.Primary())
+	err = mongoClient.Ping(context.Background(), readpref.Primary())
 	if err != nil {
 		log.Fatal("ping failed")
 	}
 
-	return mongoTestClient
+	return mongoClient
 }
 
 func TestMongoOperations(t *testing.T) {
@@ -115,5 +117,15 @@ func TestMongoOperations(t *testing.T) {
 		}
 
 		t.Log("number of clans updated:", i)
+	})
+
+	t.Run("Delete all", func(t *testing.T) {
+		i, err := clanRepo.DeleteAll()
+
+		if err != nil {
+			log.Fatal("deletions failed", err)
+		}
+
+		t.Log("number of clans deleted:", i)
 	})
 }
