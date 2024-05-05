@@ -43,7 +43,10 @@ func (clanRepo *ClanRepo) GetClanByID(id string) (*Clan, error) {
 
 	err := clanRepo.MongoCollection.FindOne(context.Background(), bson.D{{Key: "clanid", Value: id}}).Decode(&clan)
 	if err != nil {
-		return nil, err
+		err = clanRepo.MongoCollection.FindOne(context.Background(), bson.D{{Key: "guildid", Value: id}}).Decode(&clan)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return &clan, nil

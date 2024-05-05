@@ -98,4 +98,22 @@ func TestMongoOperations(t *testing.T) {
 
 		t.Log("number of clans updated:", i)
 	})
+
+	t.Run("Update 1st clan", func(t *testing.T) {
+		clan, err := clanRepo.GetClanByID("124324253456")
+
+		if err != nil {
+			t.Fatal("Failed to get clan", err)
+		}
+
+		clan.LeaderID = "nuts"
+
+		i, err := clanRepo.UpdateClan(clan)
+
+		if err != nil {
+			log.Fatal("update failed", err)
+		}
+
+		t.Log("number of clans updated:", i)
+	})
 }
