@@ -63,7 +63,7 @@ func (memberRepo *MemberRepo) GetAll(predicates ...bson.E) ([]Member, error) {
 	for _, predicate := range predicates {
 		filter = append(filter, predicate)
 	}
-	results, err := memberRepo.MongoCollection.Find(context.Background(), bson.D{})
+	results, err := memberRepo.MongoCollection.Find(context.Background(), filter)
 
 	if err != nil {
 		return nil, err
