@@ -27,14 +27,9 @@ func (memberRepo *MemberRepo) Delete(id string) (int64, error) {
 	return result.DeletedCount, nil
 }
 
-func (memberRepo *MemberRepo) DeleteAll(predicates ...bson.E) (int64, error) {
-	filter := bson.D{}
-
-	for _, predicate := range predicates {
-		filter = append(filter, predicate)
-	}
+func (memberRepo *MemberRepo) DeleteAll() (int64, error) {
 	result, err := memberRepo.MongoCollection.DeleteMany(context.Background(),
-		filter)
+		bson.E{})
 
 	if err != nil {
 		return 0, err
@@ -57,7 +52,23 @@ func (memberRepo *MemberRepo) Get(id string) (*Member, error) {
 	return &member, nil
 }
 
-func (memberRepo *MemberRepo) GetAll(predicates ...bson.E) ([]Member, error) {
+func (memberRepo *MemberRepo) GetAll() ([]Member, error) {
+	results, err := memberRepo.MongoCollection.Find(context.Background(), bson.E{})
+
+	if err != nil {
+		return nil, err
+	}
+
+	var members []Member
+	err = results.All(context.Background(), &members)
+	if err != nil {
+		return nil, fmt.Errorf("results decode error %s", err.Error())
+	}
+
+	return members, err
+}
+
+func (memberRepo *MemberRepo) Filter(predicates ...bson.E) ([]Member, error) {
 	filter := bson.D{}
 
 	for _, predicate := range predicates {

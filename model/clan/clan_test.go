@@ -8,7 +8,6 @@ import (
 
 	c "github.com/nwoik/calibotapi/model/clan"
 
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -75,7 +74,7 @@ func TestMongoOperations(t *testing.T) {
 	})
 
 	t.Run("Get all clans", func(t *testing.T) {
-		results, err := clanRepo.GetAll(bson.E{Key: "clanid", Value: "124312424"})
+		results, err := clanRepo.GetAll()
 
 		if err != nil {
 			t.Fatal("Failed to get clans", err)
