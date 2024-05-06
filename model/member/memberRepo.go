@@ -100,7 +100,7 @@ func (memberRepo *MemberRepo) Insert(member *Member) (interface{}, error) {
 
 func (memberRepo *MemberRepo) Update(member *Member) (int64, error) {
 	result, err := memberRepo.MongoCollection.UpdateOne(context.Background(),
-		bson.D{{Key: "userid", Value: member.ClanID}},
+		bson.D{{Key: "userid", Value: member.UserID}},
 		bson.D{{Key: "$set", Value: member}})
 
 	if err != nil {
