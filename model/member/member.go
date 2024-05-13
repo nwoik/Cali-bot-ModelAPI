@@ -54,6 +54,11 @@ func (member *Member) SetClanID(clanid string) *Member {
 	return member
 }
 
+func (member *Member) SetRank(rank string) *Member {
+	member.Rank = rank
+	return member
+}
+
 func Open(filePath string) []*Member {
 	var members []*Member
 	jsonData, err := os.ReadFile(filePath)
