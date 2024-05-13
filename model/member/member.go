@@ -7,12 +7,13 @@ import (
 )
 
 type Member struct {
-	UserID string `json:"userid" bson:"userid"`
-	Nick   string `json:"nick" bson:"nick"`
-	IGN    string `json:"ign" bson:"ign"`
-	IGID   string `json:"igid" bson:"igid"`
-	ClanID string `json:"clanid" bson:"clanid"`
-	Rank   string `json:"rank" bson:"rank"`
+	UserID     string `json:"userid" bson:"userid"`
+	Nick       string `json:"nick" bson:"nick"`
+	IGN        string `json:"ign" bson:"ign"`
+	IGID       string `json:"igid" bson:"igid"`
+	ClanID     string `json:"clanid" bson:"clanid"`
+	Rank       string `json:"rank" bson:"rank"`
+	DateJoined string `json:"datejoined" bson:"datejoined"`
 }
 
 func NewMember() *Member {
@@ -56,6 +57,11 @@ func (member *Member) SetClanID(clanid string) *Member {
 
 func (member *Member) SetRank(rank string) *Member {
 	member.Rank = rank
+	return member
+}
+
+func (member *Member) SetDateJoined(dateJoined string) *Member {
+	member.DateJoined = dateJoined
 	return member
 }
 
