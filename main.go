@@ -23,7 +23,7 @@ func main() {
 
 	defer mongoClient.Disconnect(context.Background())
 
-	collection := mongoClient.Database("calibot").Collection("member_test")
+	collection := mongoClient.Database("calibot").Collection("member")
 
 	memberRepo := m.NewMemberRepo(collection)
 
