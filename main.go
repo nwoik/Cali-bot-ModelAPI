@@ -1,19 +1,39 @@
 package main
 
+import (
+	"context"
+	"log"
+	"os"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+
+	m "github.com/nwoik/calibotapi/model/member"
+)
+
 // mongo "go.mongodb.org/mongo-driver/mongo"
 
 func main() {
-	// clans := c.Open("./clan.json")
-	// members := m.Open("members.json")
+	pswd := os.Getenv("MONGO_PASS")
+	mongoClient, err := mongo.Connect(context.Background(),
+		options.Client().ApplyURI("mongodb://mongo:"+pswd+"@viaduct.proxy.rlwy.net:58839/?tlsCertificateKeyFilePassword="+pswd))
+	if err != nil {
+		log.Fatal("error connecting to db", err)
+	}
 
-	// clan := c.CreateClan("My Clan", "129712342", "123131")
-	// clan.AddMember(m.CreateMember("12345", "nikka", "deez", "123131414"))
-	// clan.BlacklistMember(m.CreateMember("12345", "nikka", "deez", "123131414"))
+	defer mongoClient.Disconnect(context.Background())
 
-	// clans = append(clans, clan)
+	collection := mongoClient.Database("calibot").Collection("member_test")
 
-	// members = append(members, m.CreateMember("12345", "nikka", "deez", "123131414"))
+	memberRepo := m.NewMemberRepo(collection)
 
-	// c.Close("./clan.json", clans)
-	// m.Close("./members.json", members)
+	members, err := memberRepo.GetAll()
+
+	if err != nil {
+		log.Fatal("Failed to get members", err)
+	}
+
+	for _, member := range members {
+		memberRepo.Update(member)
+	}
 }
