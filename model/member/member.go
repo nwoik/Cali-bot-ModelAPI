@@ -6,6 +6,14 @@ import (
 	"os"
 )
 
+type Rank string
+
+const (
+	MEMBER  Rank = "member"
+	OFFICER Rank = "officer"
+	LEADER  Rank = "leader"
+)
+
 type Member struct {
 	UserID     string `json:"userid" bson:"userid"`
 	Nick       string `json:"nick" bson:"nick"`
