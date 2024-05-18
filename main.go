@@ -14,9 +14,9 @@ import (
 // mongo "go.mongodb.org/mongo-driver/mongo"
 
 func main() {
-	pswd := os.Getenv("MONGO_PASS")
+	url := os.Getenv("MONGO_URL")
 	mongoClient, err := mongo.Connect(context.Background(),
-		options.Client().ApplyURI("mongodb://mongo:"+pswd+"@viaduct.proxy.rlwy.net:58839/?tlsCertificateKeyFilePassword="+pswd))
+		options.Client().ApplyURI(url))
 	if err != nil {
 		log.Fatal("error connecting to db", err)
 	}

@@ -22,6 +22,7 @@ type Member struct {
 	ClanID     string `json:"clanid" bson:"clanid"`
 	Rank       string `json:"rank" bson:"rank"`
 	DateJoined string `json:"datejoined" bson:"datejoined"`
+	Warnings   int    `json:"warnings" bson:"warnings"`
 }
 
 func NewMember() *Member {
@@ -33,7 +34,8 @@ func CreateMember(nick string, ign string, igid string, userid string) *Member {
 		SetNick(nick).
 		SetIGN(ign).
 		SetIGID(igid).
-		SetUserID(userid)
+		SetUserID(userid).
+		SetWarnings(0)
 
 	return newMember
 }
@@ -70,6 +72,11 @@ func (member *Member) SetRank(rank string) *Member {
 
 func (member *Member) SetDateJoined(dateJoined string) *Member {
 	member.DateJoined = dateJoined
+	return member
+}
+
+func (member *Member) SetWarnings(number int) *Member {
+	member.Warnings = number
 	return member
 }
 
